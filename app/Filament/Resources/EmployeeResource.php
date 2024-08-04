@@ -17,12 +17,42 @@ class EmployeeResource extends Resource
 {
     protected static ?string $model = Employee::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
+    protected static ?string $navigationGroup = 'Employee Managment';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\Section::make('User Name')
+                ->description('Put user name')
+                ->schema([
+                    Forms\Components\TextInput::make('firstname')
+                        ->required(),
+                    Forms\Components\TextInput::make('lastname')
+                        ->required(),
+                    Forms\Components\TextInput::make('middlename')
+                        ->required(),
+                ])->columns(3),
+
+                Forms\Components\Section::make('User Address')
+                ->description('Put user address')
+                ->schema([
+                    Forms\Components\TextInput::make('address')
+                        ->required(),
+                    Forms\Components\TextInput::make('zip_code')
+                        ->required(),
+                ])->columns(2),
+                Forms\Components\Section::make('User Dates')
+                ->description('Put user dates')
+                ->schema([
+                    Forms\Components\DatePicker::make('birthdate')
+                        ->required(),
+                    Forms\Components\DatePicker::make('hired_at')
+                        ->required()
+                        ->columnSpanFull(),
+                ]),
                 Forms\Components\TextInput::make('country_id')
                     ->required()
                     ->numeric(),
@@ -35,21 +65,7 @@ class EmployeeResource extends Resource
                 Forms\Components\TextInput::make('department_id')
                     ->required()
                     ->numeric(),
-                Forms\Components\TextInput::make('firstname')
-                    ->required(),
-                Forms\Components\TextInput::make('lastname')
-                    ->required(),
-                Forms\Components\TextInput::make('middlename')
-                    ->required(),
-                Forms\Components\TextInput::make('address')
-                    ->required(),
-                Forms\Components\TextInput::make('zip_code')
-                    ->required(),
-                Forms\Components\DatePicker::make('birthdate')
-                    ->required(),
-                Forms\Components\DatePicker::make('hired_at')
-                    ->required(),
-            ]);
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
