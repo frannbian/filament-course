@@ -31,9 +31,10 @@ class CityResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('state_id')
+                Forms\Components\Select::make('state_id')
                     ->required()
-                    ->numeric(),
+                    ->relationship(name: 'state', titleAttribute: 'name')
+                    ->searchable('true'),
                 Forms\Components\TextInput::make('name')
                     ->required(),
             ]);
