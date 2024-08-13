@@ -27,7 +27,7 @@ class AppPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
+        ->default()
             ->id('app')
             ->path('app')
             ->login()
@@ -46,6 +46,9 @@ class AppPanelProvider extends PanelProvider
                 'info' => Color::Blue,
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
+                'primary' => Color::Amber,
+            ])
+            ->colors([
                 'primary' => Color::Amber,
             ])
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
